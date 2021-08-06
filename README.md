@@ -4,5 +4,5 @@ It's presented a little radio car with a rasp camera on bort which gives an imag
 
 
 Authors:  
-  - Arseniy Apollonoff
+  - Apollonoff Arseniy
   - Bankue Franklin
