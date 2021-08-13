@@ -4,8 +4,11 @@ from time import sleep
 robot = Robot(left=(4, 14), right=(17, 18))
 
 # Draw a square
-while True:
-    robot.forward()
-    sleep(10)
-    robot.right()
-    sleep(1)
+if __name__ == "__main__":
+    inc = 0
+    while inc!=5:
+        robot.forward()
+        sleep(10)
+        robot.right()
+        sleep(1)
+        inc += 1

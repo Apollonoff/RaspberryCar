@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Rasp server</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  </head>
+  <header>
+    <div class="container text-center">
+      <p>It's working!</p>
+    </div>
+  </header>
+  <body>
+    <div class="container-fluid text-center">
+      <p><button class="btn btn-outline-dark" type="button" name="btn_move_straight" onclick="move_straight()">Straight</button></p>
+      <p>
+        <button class="btn btn-outline-warning" type="button" name="btn_move_left" onclick="move_left()">Left</button>
+        <button class="btn btn-outline-warning" type="button" name="btn_move_right" onclick="move_right()">Right</button>
+      </p>
+      <p><button class="btn btn-outline-info" type="button" name="btn_move_back" onclick="move_back()">Back</button></p>
+      <p></p>
+      <p><button class="btn btn-outline-danger btn-lg btn-block" type="button" name="btn_stop" onclick="stop()">Stop</button></p>
+      <span id = "textstatus">Status: Ready</span>
+    </div>
+    <script type="text/javascript" charset="utf-8">
+      function httpPostAsync(method, params, callback){
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function(){
+          if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+          else
+            callback(`Error ${xmlHttp.status}`)
+        }
+        xmlHttp.open("POST", window.location.href + method, true);
+        xmlHttp.setRequestHeader("Content-Type", "application/json");
+        xmlHttp.send(params);
+      }
+
+      function move_straight(){
+        document.getElementById("textstatus").textContent = "Car will move straight...";
+        httpPostAsync("motors", JSON.stringify({"direction": 1}), function(resp){
+          document.getElementById("textstatus").textContent = `Move straight: ${resp}`;
+        })
+      }
+
+      function move_back(){
+        document.getElementById("textstatus").textContent = "Car will move back...";
+        httpPostAsync("motors", JSON.stringify({"direction": 2}), function(resp){
+          document.getElementById("textstatus").textContent = `Move back: ${resp}`;
+        })
+      }
+
+      function move_right(){
+        document.getElementById("textstatus").textContent = "Car will turn right...";
+        httpPostAsync("motors", JSON.stringify({"direction": 3}), function(resp){
+          document.getElementById("textstatus").textContent = `Turn right: ${resp}`;
+        })
+      }
+
+      function move_left(){
+        document.getElementById("textstatus").textContent = "Car will turn left...";
+        httpPostAsync("motors", JSON.stringify({"direction": 4}), function(resp){
+          document.getElementById("textstatus").textContent = `Turn left: ${resp}`;
+        })
+      }
+
+      function stop(){
+        document.getElementById("textstatus").textContent = "Car will stop...";
+        httpPostAsync("motors", JSON.stringify({"direction": 5}), function(resp){
+          document.getElementById("textstatus").textContent = `Car stop: ${resp}`;
+        })
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+  </body>
+</html>
