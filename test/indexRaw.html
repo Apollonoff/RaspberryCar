@@ -2,34 +2,31 @@
 <html lang="ru" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>RaspCar</title>
+    <title>Rasp server</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
   </head>
-  <body>
-    <header>
-      <div class="navbar navbar-dark bg-dark shadow-sm">
+  <header>
+  <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container">
       <a href="#" class="navbar-brand d-flex align-items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" Посмотретьbox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
         <strong>RaspCar</strong>
       </a>
     </div>
-      </div>
-    </header>
-    <main>
-      <div class="card mx-auto w-50 p-3 text-center mt-5 rounded-pill border-info bg-light bg-gradient">
-        <div class="card-body">
-          <p><button class="btn btn-outline-dark" type="button" name="btn_move_straight" onclick="move_straight()">Straight</button></p>
-          <p>
-            <button class="btn btn-outline-warning" type="button" name="btn_move_left" onclick="move_left()">Left</button>
-            <button class="btn btn-outline-warning" type="button" name="btn_move_right" onclick="move_right()">Right</button>
-          </p>
-          <p><button class="btn btn-outline-info" type="button" name="btn_move_back" onclick="move_back()">Back</button></p>
-          <p></p>
-          <p><button class="btn btn-outline-danger btn-lg btn-block" type="button" name="btn_stop" onclick="stop()">Stop</button></p>
-          <span id = "textstatus">Status: <b>Ready</b></span>
-        </div>
-      </div>
-    </main>
+  </div>
+</header>
+  <body>
+    <div class="container-fluid text-center">
+      <p><button class="btn btn-outline-dark" type="button" name="btn_move_straight" onclick="move_straight()">Straight</button></p>
+      <p>
+        <button class="btn btn-outline-warning" type="button" name="btn_move_left" onclick="move_left()">Left</button>
+        <button class="btn btn-outline-warning" type="button" name="btn_move_right" onclick="move_right()">Right</button>
+      </p>
+      <p><button class="btn btn-outline-info" type="button" name="btn_move_back" onclick="move_back()">Back</button></p>
+      <p></p>
+      <p><button class="btn btn-outline-danger btn-lg btn-block" type="button" name="btn_stop" onclick="stop()">Stop</button></p>
+      <span id = "textstatus">Status: Ready</span>
+    </div>
     <script type="text/javascript" charset="utf-8">
       function httpPostAsync(method, params, callback){
         var xmlHttp = new XMLHttpRequest();
@@ -79,5 +76,6 @@
         })
       }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
   </body>
 </html>
