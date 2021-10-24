@@ -109,6 +109,8 @@ def server_thread(port):
             server_address = ('', port)
             httpd = StreamingServer(server_address, ServerHandler)
             httpd.serve_forever()
+        except KeyboardInterrupt:
+            httpd.server_close()
         finally:
             camera.stop_recording()
 
