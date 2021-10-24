@@ -4,6 +4,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from motors import robot
 import json
 
+
 class ServerHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         global html
@@ -15,6 +16,7 @@ class ServerHandler(BaseHTTPRequestHandler):
             self.wfile.write(html.encode('utf-8'))
         else:
             self.send_error(404, "Page Not Found {}".format(self.path))
+
     def do_POST(self):
         content_length = int(self.headers['Content-Length'])
         body = self.rfile.read(content_length)
@@ -23,12 +25,16 @@ class ServerHandler(BaseHTTPRequestHandler):
                 data_dict = json.loads(body.decode('utf-8'))
                 if data_dict['direction'] == 1:
                     robot.forward()
+
                 elif data_dict['direction'] == 2:
-                    robot.back()
+                    robot.backward()
+
                 elif data_dict['direction'] == 3:
                     robot.right()
+
                 elif data_dict['direction'] == 4:
                     robot.left()
+
                 else:
                     robot.stop()
 
@@ -55,7 +61,7 @@ def server_thread(port):
 
 
 if __name__ == '__main__':
-    port = 8000
+    port = 4444
 
     with open('index.html', 'r') as file:
         html = file.read()
