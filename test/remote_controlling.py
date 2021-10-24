@@ -116,7 +116,7 @@ def server_thread(port):
 
 
 if __name__ == '__main__':
-    port = 4444
+    port = 80
     output = StreamingOutput()
 
     with open('index.html', 'r') as file:
