@@ -1,3 +1,4 @@
 .idea/
 Bot/
 venv/
+test/__pycache__/motors.cpython-37.pyc
